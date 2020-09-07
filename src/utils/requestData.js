@@ -4,7 +4,6 @@ export const requestData = async (url) => {
     const data = await requestRes.json();
     return data;
   } catch (e){
-    return e;
+    return (e);
   }
-  
 };
