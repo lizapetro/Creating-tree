@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import TreeNode from './TreeNode'
 import { preparationData } from '../../utils/preparationData';
 
 import './TreeComponent.scss';
@@ -9,12 +10,7 @@ const TreeComponent = ({ data = [] }) => {
   const renderTree = (dataTree) => {
     return (
       dataTree.map(item => (
-        <div className="column" onClick={() => setShow(!show)}>{item.parent.title}
-          {!!item.children.length && <div className="row">{
-            renderTree(item.children
-              .sort((a,b) => a.parent.srt < b.parent.srt ? -1 : 1))}
-          </div>}
-        </div>
+        <TreeNode item={item} renderTree={renderTree} />
       ))
     );
   };
