@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import './TreeComponent.scss';
-
+import "./TreeComponent.scss";
 
 const TreeNode = ({ item, renderTree }) => {
-  
   const setShow = (e) => {
-    if (e.target.nextSibling) e.target.nextSibling.classList.toggle('hideNode');
+    if (e.target.nextSibling) e.target.nextSibling.classList.toggle("hideNode");
   };
 
+  const sortChildren = (children) =>
+    children.sort((a, b) => (a.parent.srt < b.parent.srt ? -1 : 1));
+
   return (
-    <div className="column" >
+    <div className="column">
       <span onClick={(e) => setShow(e)}>{item.parent.title}</span>
-      {!!item.children.length && <div className="row">{
-        renderTree(item.children
-          .sort((a,b) => a.parent.srt < b.parent.srt ? -1 : 1))}
-      </div>}
+      {!!item.children.length && (
+        <div className="row">{renderTree(sortChildren(item.children))}</div>
+      )}
     </div>
   );
-}
+};
 
 export default TreeNode;
